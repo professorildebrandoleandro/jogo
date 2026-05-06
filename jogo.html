@@ -22,7 +22,7 @@
 <!-- OPEN GRAPH (Facebook / WhatsApp) -->
 <meta property="og:title" content="Ildebrando Leandro | Professor de Educação Física">
 <meta property="og:description" content="Treinos personalizados, saúde e marketing digital em Portugal.">
-<meta property="og:image" content="https://professorildebrandoleandro.github.io/jogo.png">
+<meta property="og:image" content="https://professorildebrandoleandro.github.io/jogo/jogo.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://professorildebrandoleandro.github.io/">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ildebrando Leandro">
 <meta name="twitter:description" content="Educação Física e Marketing Digital em Portugal">
-<meta name="twitter:image" content="https://professorildebrandoleandro.github.io/jogo.png">
+<meta name="twitter:image" content="https://professorildebrandoleandro.github.io/jogo/jogo.png">
 
 <!-- GEO -->
 <meta name="geo.region" content="PT">
@@ -40,7 +40,7 @@
 
 <!-- FAVICON -->
   
-<link rel="icon" type="image/png" href="https://professorildebrandoleandro.github.io/favicon.png">
+<link rel="icon" href="https://professorildebrandoleandro.github.io/jogo/favicon.png">
 
 <!-- ADSENSE -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360508033837336" crossorigin="anonymous"></script>
@@ -322,26 +322,40 @@ document.addEventListener("keydown",e=>keys[e.key]=true);
 document.addEventListener("keyup",e=>keys[e.key]=false);
 
 loop();
-</script>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>ILDEBRANDO HUB</title>
+
+document.getElementById("left").ontouchstart = () => keys["ArrowLeft"] = true;
+document.getElementById("left").ontouchend = () => keys["ArrowLeft"] = false;
+
+document.getElementById("right").ontouchstart = () => keys["ArrowRight"] = true;
+document.getElementById("right").ontouchend = () => keys["ArrowRight"] = false;
+
+document.getElementById("jump").ontouchstart = () => keys[" "] = true;
+document.getElementById("jump").ontouchend = () => keys[" "] = false;
+</script>
 
 <style>
 body{
     margin:0;
     background:black;
     font-family:Arial;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
     color:white;
 }
+
+canvas { 
+    display:block; 
+    margin:auto; 
+}
+canvas { display:block; margin:auto;
+
+}
+
+canvas {
+    display:block;
+    margin:20px auto;
+}
+
+
 
 /* LOGO */
 .logo{
@@ -361,6 +375,11 @@ body{
     display:grid;
     grid-template-columns: repeat(2, 220px);
     gap:30px;
+
+    justify-content:center;
+
+   margin-top:-0px;
+margin-bottom:80px; /* 👈 ESSA LINHA resolve */
 }
 
 /* BOTÃO NEON */
@@ -401,11 +420,33 @@ body{
     box-shadow:0 0 25px #ffaa00, 0 0 50px #ffaa00;
 }
 
+#controls{
+    position:fixed;
+    bottom:calc(env(safe-area-inset-bottom) + 120px);
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    z-index:999;
+}
+#controls button{
+    font-size:30px;
+    padding:15px;
+    border-radius:10px;
+    border:none;
+    background:rgba(0,0,0,0.5);
+    color:white;
+}
+
+@media (min-width: 768px){
+    #controls{
+        display:none;
+    }
+}
 </style>
 </head>
 
 <body>
-
 
 
 <div class="menu">
@@ -434,7 +475,11 @@ function abrir(pagina){
 }
 </script>
 
-
+<div id="controls">
+  <button id="left">⬅️</button>
+  <button id="jump">⬆️</button>
+  <button id="right">➡️</button>
+</div>
 
 </body>
 </html>
