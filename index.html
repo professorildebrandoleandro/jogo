@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-pt">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-language" content="pt-PT">
+<meta name="theme-color" content="#4f8f8f">
+
+<title> Search ICLF | Buscador </title>
+
+<!-- SEO -->
+<meta name="description" content="Professor de Educação Física em Portugal. Treinos personalizados, emagrecimento, saúde e qualidade de vida. Atendimento profissional com resultados reais.">
+<meta name="author" content="Ildebrando Leandro">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://professorildebrandoleandro.github.io/">
+
+<!-- GOOGLE VERIFICAÇÃO -->
+<meta name="google-site-verification" content="WnKot6Cz-R-KI7E2rQOBbm77-tIXL-c7BcpzlCtdvpI" />
+
+<!-- OPEN GRAPH (Facebook / WhatsApp) -->
+<meta property="og:title" content="Ildebrando Leandro | Professor de Educação Física">
+<meta property="og:description" content="Treinos personalizados, saúde e marketing digital em Portugal.">
+<meta property="og:image" content="https://professorildebrandoleandro.github.io/professor2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://professorildebrandoleandro.github.io/">
+<meta property="og:type" content="website">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ildebrando Leandro">
+<meta name="twitter:description" content="Educação Física e Marketing Digital em Portugal">
+<meta name="twitter:image" content="https://professorildebrandoleandro.github.io/professor2.png">
+
+<!-- GEO -->
+<meta name="geo.region" content="PT">
+<meta name="geo.placename" content="Portugal">
+
+<!-- FAVICON -->
+  
+<link rel="icon" type="image/png" href="https://professorildebrandoleandro.github.io/favicon.png">
+
+<!-- CSS -->
+<link rel="stylesheet" href="estilo.css">
+
+<!-- ADSENSE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360508033837336" crossorigin="anonymous"></script>
+
+<!-- GOOGLE ANALYTICS (MESMO CÓDIGO NOS 3 SITES) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FDY6WKJVM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6FDY6WKJVM');
+</script>
+
+<!-- SCHEMA ORG (PERSON) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ildebrando Corrêa Leandro Filho",
+  "image": "https://professorildebrandoleandro.github.io/imagens/professor2.png",
+  "jobTitle": "Professor de Educação Física",
+  "url": "https://professorildebrandoleandro.github.io/",
+  "sameAs": [
+    "https://www.instagram.com/ildebrando_leandro/"
+  ]
+}
+</script>
+
+
+<style>
+body {
+    margin: 0;
+    background: #000;
+    font-family: Arial;
+    color: #fff;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 40px;
+    animation: neon 1.5s infinite alternate;
+}
+
+@keyframes neon {
+    0% { color: #00f0ff; text-shadow: 0 0 10px #00f0ff; }
+    50% { color: #ff00ff; text-shadow: 0 0 20px #ff00ff; }
+    100% { color: #00ff88; text-shadow: 0 0 20px #00ff88; }
+}
+
+.search-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 60%;
+    padding: 15px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+}
+
+button {
+    padding: 12px 20px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Globo animado */
+.globe {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/6/6f/Earth_Eastern_Hemisphere.jpg');
+    background-size: cover;
+    animation: rotateGlobe 20s linear infinite;
+    box-shadow: 0 0 30px #00f0ff;
+}
+
+@keyframes rotateGlobe {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 0; }
+}
+
+.results {
+    max-width: 800px;
+    margin: auto;
+}
+
+.result-item {
+    margin: 20px 0;
+    padding: 15px;
+    background: #111;
+    border-radius: 10px;
+}
+
+.result-item a {
+    color: #00f0ff;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.result-item p {
+    color: #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">Search ICLF</div>
+</div>
+
+<div class="search-box">
+    <input type="text" id="query" placeholder="Pesquisar...">
+    <button onclick="buscar()">Buscar</button>
+</div>
+
+<div class="globe"></div>
+
+<div class="results" id="results"></div>
+
+<script>
+async function buscar() {
+    const query = document.getElementById('query').value.trim();
+    const resultsDiv = document.getElementById('results');
+
+    if (!query) {
+        resultsDiv.innerHTML = "Digite algo para pesquisar.";
+        return;
+    }
+
+    resultsDiv.innerHTML = "Buscando...";
+
+    try {
+        const url = "https://pt.wikipedia.org/w/api.php?action=query&list=search&srsearch=" 
+        + encodeURIComponent(query) 
+        + "&format=json&origin=*";
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Erro na requisição");
+        }
+
+        const data = await response.json();
+
+        resultsDiv.innerHTML = "";
+
+        if (!data.query || !data.query.search.length) {
+            resultsDiv.innerHTML = "Nenhum resultado encontrado.";
+            return;
+        }
+
+        data.query.search.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'result-item';
+
+            div.innerHTML = `
+                <a href="https://pt.wikipedia.org/wiki/${item.title.replace(/ /g, '_')}" target="_blank">
+                    ${item.title}
+                </a>
+                <p>${item.snippet}</p>
+            `;
+
+            resultsDiv.appendChild(div);
+        });
+
+    } catch (error) {
+        console.error(error);
+        resultsDiv.innerHTML = "Erro ao buscar. Pressione F12 e veja o console.";
+    }
+}
+
+// Enter funciona
+document.getElementById("query").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        buscar();
+    }
+});
+</script>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>ILDEBRANDO HUB</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    font-family:Arial;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    color:white;
+}
+
+/* LOGO */
+.logo{
+    font-size:50px;
+    margin-bottom:40px;
+    animation: neonTitle 1.5s infinite alternate;
+}
+
+@keyframes neonTitle{
+    0%{color:#0ff; text-shadow:0 0 10px #0ff;}
+    50%{color:#ff00ff; text-shadow:0 0 20px #ff00ff;}
+    100%{color:#00ff00; text-shadow:0 0 20px #00ff00;}
+}
+
+/* GRID */
+.menu{
+    display:grid;
+    grid-template-columns: repeat(2, 220px);
+    gap:30px;
+}
+
+/* BOTÃO NEON */
+.btn{
+    padding:20px;
+    font-size:20px;
+    border:none;
+    cursor:pointer;
+    border-radius:15px;
+    background:#111;
+    color:white;
+    transition:0.3s;
+    text-align:center;
+}
+
+/* efeitos diferentes */
+.btn1:hover{
+    background:#0ff;
+    color:black;
+    box-shadow:0 0 25px #0ff, 0 0 50px #0ff;
+}
+
+.btn2:hover{
+    background:#ff00ff;
+    color:white;
+    box-shadow:0 0 25px #ff00ff, 0 0 50px #ff00ff;
+}
+
+.btn3:hover{
+    background:#00ff00;
+    color:black;
+    box-shadow:0 0 25px #00ff00, 0 0 50px #00ff00;
+}
+
+.btn4:hover{
+    background:#ffaa00;
+    color:black;
+    box-shadow:0 0 25px #ffaa00, 0 0 50px #ffaa00;
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+<div class="menu">
+
+    <button class="btn btn1" onclick="abrir('GPS.html')">
+        🌍 GPS
+    </button>
+
+    <button class="btn btn2" onclick="abrir('jogo.html')">
+        🎮 JOGO
+    </button>
+
+    <button class="btn btn3" onclick="abrir('index.html')">
+        🔎 SEARCH
+    </button>
+
+    <button class="btn btn4" onclick="abrir('calculadora.html')">
+        🧮 CALCULADORA
+    </button>
+
+</div>
+
+<script>
+function abrir(pagina){
+    window.location.href = pagina;
+}
+</script>
+
+</body>
+</html>

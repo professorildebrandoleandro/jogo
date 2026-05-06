@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-language" content="pt-PT">
+<meta name="theme-color" content="#4f8f8f">
+
+<title> JOGOS ONLINE | FUGINDO DOS MONSTROS </title>
+<!-- SEO -->
+<meta name="description" content="Professor de Educação Física em Portugal. Treinos personalizados, emagrecimento, saúde e qualidade de vida. Atendimento profissional com resultados reais.">
+<meta name="author" content="Ildebrando Leandro">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://professorildebrandoleandro.github.io/">
+
+<!-- GOOGLE VERIFICAÇÃO -->
+<meta name="google-site-verification" content="WnKot6Cz-R-KI7E2rQOBbm77-tIXL-c7BcpzlCtdvpI" />
+
+<!-- OPEN GRAPH (Facebook / WhatsApp) -->
+<meta property="og:title" content="Ildebrando Leandro | Professor de Educação Física">
+<meta property="og:description" content="Treinos personalizados, saúde e marketing digital em Portugal.">
+<meta property="og:image" content="https://professorildebrandoleandro.github.io/jogo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://professorildebrandoleandro.github.io/">
+<meta property="og:type" content="website">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ildebrando Leandro">
+<meta name="twitter:description" content="Educação Física e Marketing Digital em Portugal">
+<meta name="twitter:image" content="https://professorildebrandoleandro.github.io/jogo.png">
+
+<!-- GEO -->
+<meta name="geo.region" content="PT">
+<meta name="geo.placename" content="Portugal">
+
+<!-- FAVICON -->
+  
+<link rel="icon" type="image/png" href="https://professorildebrandoleandro.github.io/favicon.png">
+
+<!-- ADSENSE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360508033837336" crossorigin="anonymous"></script>
+
+<!-- GOOGLE ANALYTICS (MESMO CÓDIGO NOS 3 SITES) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FDY6WKJVM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6FDY6WKJVM');
+</script>
+
+<!-- SCHEMA ORG (PERSON) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ildebrando Corrêa Leandro Filho",
+  "image": "https://professorildebrandoleandro.github.io/imagens/professor2.png",
+  "jobTitle": "Professor de Educação Física",
+  "url": "https://professorildebrandoleandro.github.io/",
+  "sameAs": [
+    "https://www.instagram.com/ildebrando_leandro/"
+  ]
+}
+</script>
+
+<style>
+body { margin:0; background:black; overflow:hidden; }
+canvas { display:block; margin:auto; background:#87CEEB; }
+</style>
+</head>
+
+<body>
+<canvas id="game" width="900" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+function load(src){
+    const img = new Image();
+    img.src = src;
+    return img;
+}
+
+//////////////////////////////////////////////////
+// 🔊 SISTEMA DE SOM EMBUTIDO (SEM MP3)
+//////////////////////////////////////////////////
+const AudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function beep(freq, duration){
+    const osc = AudioCtx.createOscillator();
+    const gain = AudioCtx.createGain();
+
+    osc.connect(gain);
+    gain.connect(AudioCtx.destination);
+
+    osc.frequency.value = freq;
+    osc.type = "square";
+
+    gain.gain.setValueAtTime(0.1, AudioCtx.currentTime);
+
+    osc.start();
+    osc.stop(AudioCtx.currentTime + duration);
+}
+
+// sons estilo jogo
+function somPulo(){ beep(600, 0.1); }
+function somMoeda(){ beep(1000, 0.1); }
+function somGameOver(){ beep(200, 0.3); }
+
+// música simples contínua
+let musicaAtiva = false;
+
+function musicaLoop(){
+    if(!musicaAtiva) return;
+
+    beep(300,0.2);
+    setTimeout(()=>beep(400,0.2),200);
+    setTimeout(()=>beep(500,0.2),400);
+    setTimeout(musicaLoop,800);
+}
+
+// desbloquear áudio
+document.addEventListener("click", ()=>{
+    AudioCtx.resume();
+    if(!musicaAtiva){
+        musicaAtiva = true;
+        musicaLoop();
+    }
+}, {once:true});
+
+//////////////////////////////////////////////////
+// IMAGENS
+//////////////////////////////////////////////////
+const idle = load("jogo1.png");
+const walk1 = load("jogo5.png");
+const walk2 = load("jogo6.png");
+const jumpImg = load("jogo7.png");
+
+const coinImg = load("jogo10.png");
+const enemyImg = load("jogo13.png");
+const blocoImg = load("jogo11.png");
+
+const groundImg = load("jogo16.png");
+const logo = load("logo.png");
+
+//////////////////////////////////////////////////
+// PLAYER
+//////////////////////////////////////////////////
+let player = {
+    x:100,y:100,w:60,h:60,
+    dy:0,gravity:0.8,jump:-15,grounded:false
+};
+
+let keys = {};
+let frame = 0;
+let cameraX = 0;
+let score = 0;
+
+let groundParts = [
+    {x:0, width:600},
+    {x:720, width:500}
+];
+
+let groundY = 300;
+
+let enemies = [{x:900,y:270}];
+let blocks = [{x:500,y:220}];
+let coins = [{x:400,y:250}];
+
+function collision(a,b,w=40,h=40){
+    return a.x < b.x+w &&
+           a.x+a.w > b.x &&
+           a.y < b.y+h &&
+           a.y+a.h > b.y;
+}
+
+function drawPlayer(){
+    let img;
+
+    if(!player.grounded) img = jumpImg;
+    else if(keys["ArrowRight"] || keys["ArrowLeft"]){
+        frame++;
+        img = frame%20<10 ? walk1 : walk2;
+    } else img = idle;
+
+    ctx.drawImage(img, player.x, player.y, player.w, player.h);
+}
+
+function gerarTerreno(){
+    let ultimo = groundParts[groundParts.length-1].x;
+    let gap = 120 + Math.random()*120;
+    let inicio = ultimo + gap;
+
+    groundParts.push({
+        x:inicio,
+        width:300 + Math.random()*300
+    });
+
+    enemies.push({ x:inicio+150, y:270 });
+    blocks.push({ x:inicio+120, y:180 });
+    coins.push({ x:inicio+180, y:240 });
+}
+
+function update(){
+
+    if(keys["ArrowRight"]) player.x += 6;
+    if(keys["ArrowLeft"]) player.x -= 6;
+
+    player.dy += player.gravity;
+    player.y += player.dy;
+
+    player.grounded = false;
+
+    groundParts.forEach(g=>{
+        if(player.x+player.w > g.x && player.x < g.x+g.width){
+            if(player.y+player.h > groundY){
+                player.y = groundY-player.h;
+                player.dy = 0;
+                player.grounded = true;
+            }
+        }
+    });
+
+    blocks.forEach(b=>{
+        if(
+            player.x + player.w > b.x &&
+            player.x < b.x + 40 &&
+            player.y + player.h > b.y &&
+            player.y + player.h < b.y + 20 &&
+            player.dy >= 0
+        ){
+            player.y = b.y - player.h;
+            player.dy = 0;
+            player.grounded = true;
+        }
+    });
+
+    if((keys[" "] || keys["ArrowUp"]) && player.grounded){
+        player.dy = player.jump;
+        somPulo();
+    }
+
+    if(!player.grounded && player.y > 500){
+        somGameOver();
+        setTimeout(()=>location.reload(),300);
+    }
+
+    enemies.forEach(e=>{
+        e.x += (player.x < e.x ? -2 : 2);
+
+        if(collision(player,e)){
+            somGameOver();
+            setTimeout(()=>location.reload(),300);
+        }
+    });
+
+    coins = coins.filter(c=>{
+        if(collision(player,c,20,20)){
+            score++;
+            somMoeda();
+            return false;
+        }
+        return true;
+    });
+
+    cameraX = player.x - 200;
+
+    if(player.x > groundParts[groundParts.length-1].x - 300){
+        gerarTerreno();
+    }
+}
+
+function draw(){
+
+    ctx.fillStyle="#87CEEB";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.drawImage(logo, canvas.width/2 - 250, 10, 500, 120);
+
+    groundParts.forEach(g=>{
+        for(let i=0;i<g.width;i+=80){
+            ctx.drawImage(groundImg, g.x+i-cameraX, groundY, 80, 40);
+        }
+    });
+
+    blocks.forEach(b=>{
+        ctx.drawImage(blocoImg, b.x-cameraX, b.y,40,40);
+    });
+
+    coins.forEach(c=>{
+        ctx.drawImage(coinImg, c.x-cameraX, c.y,20,20);
+    });
+
+    enemies.forEach(e=>{
+        ctx.drawImage(enemyImg, e.x-cameraX, e.y,30,30);
+    });
+
+    ctx.save();
+    ctx.translate(-cameraX,0);
+    drawPlayer();
+    ctx.restore();
+
+    ctx.fillStyle="black";
+    ctx.fillText("Pontos: "+score,20,20);
+}
+
+function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+document.addEventListener("keydown",e=>keys[e.key]=true);
+document.addEventListener("keyup",e=>keys[e.key]=false);
+
+loop();
+</script>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>ILDEBRANDO HUB</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    font-family:Arial;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    color:white;
+}
+
+/* LOGO */
+.logo{
+    font-size:50px;
+    margin-bottom:40px;
+    animation: neonTitle 1.5s infinite alternate;
+}
+
+@keyframes neonTitle{
+    0%{color:#0ff; text-shadow:0 0 10px #0ff;}
+    50%{color:#ff00ff; text-shadow:0 0 20px #ff00ff;}
+    100%{color:#00ff00; text-shadow:0 0 20px #00ff00;}
+}
+
+/* GRID */
+.menu{
+    display:grid;
+    grid-template-columns: repeat(2, 220px);
+    gap:30px;
+}
+
+/* BOTÃO NEON */
+.btn{
+    padding:20px;
+    font-size:20px;
+    border:none;
+    cursor:pointer;
+    border-radius:15px;
+    background:#111;
+    color:white;
+    transition:0.3s;
+    text-align:center;
+}
+
+/* efeitos diferentes */
+.btn1:hover{
+    background:#0ff;
+    color:black;
+    box-shadow:0 0 25px #0ff, 0 0 50px #0ff;
+}
+
+.btn2:hover{
+    background:#ff00ff;
+    color:white;
+    box-shadow:0 0 25px #ff00ff, 0 0 50px #ff00ff;
+}
+
+.btn3:hover{
+    background:#00ff00;
+    color:black;
+    box-shadow:0 0 25px #00ff00, 0 0 50px #00ff00;
+}
+
+.btn4:hover{
+    background:#ffaa00;
+    color:black;
+    box-shadow:0 0 25px #ffaa00, 0 0 50px #ffaa00;
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+<div class="menu">
+
+    <button class="btn btn1" onclick="abrir('GPS.html')">
+        🌍 GPS
+    </button>
+
+    <button class="btn btn2" onclick="abrir('jogo.html')">
+        🎮 JOGO
+    </button>
+
+    <button class="btn btn3" onclick="abrir('index.html')">
+        🔎 SEARCH
+    </button>
+
+    <button class="btn btn4" onclick="abrir('calculadora.html')">
+        🧮 CALCULADORA
+    </button>
+
+</div>
+
+<script>
+function abrir(pagina){
+    window.location.href = pagina;
+}
+</script>
+
+
+
+</body>
+</html>
