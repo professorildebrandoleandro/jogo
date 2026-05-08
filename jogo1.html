@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-language" content="pt-PT">
+<meta name="theme-color" content="#4f8f8f">
+
+<title> JOGO PARA CELULAR  | FUGINDO DO MONSTROS </title>
+<!-- SEO -->
+<meta name="description" content="Professor de Educação Física em Portugal. Treinos personalizados, emagrecimento, saúde e qualidade de vida. Atendimento profissional com resultados reais.">
+<meta name="author" content="Ildebrando Leandro">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://professorildebrandoleandro.github.io/">
+
+<!-- GOOGLE VERIFICAÇÃO -->
+<meta name="google-site-verification" content="WnKot6Cz-R-KI7E2rQOBbm77-tIXL-c7BcpzlCtdvpI" />
+
+<!-- OPEN GRAPH (Facebook / WhatsApp) -->
+<meta property="og:title" content="Ildebrando Leandro | Professor de Educação Física">
+<meta property="og:description" content="Treinos personalizados, saúde e marketing digital em Portugal.">
+<meta property="og:image" content="https://professorildebrandoleandro.github.io/jogo/professor2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://professorildebrandoleandro.github.io/">
+<meta property="og:type" content="website">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ildebrando Leandro">
+<meta name="twitter:description" content="Educação Física e Marketing Digital em Portugal">
+<meta name="twitter:image" content="https://professorildebrandoleandro.github.io/jogo/professor2.png">
+
+<!-- GEO -->
+<meta name="geo.region" content="PT">
+<meta name="geo.placename" content="Portugal">
+
+<!-- FAVICON -->
+  
+<link rel="icon" href="https://professorildebrandoleandro.github.io/jogo/favicon.png">
+
+<!-- ADSENSE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360508033837336" crossorigin="anonymous"></script>
+
+<!-- GOOGLE ANALYTICS (MESMO CÓDIGO NOS 3 SITES) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FDY6WKJVM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6FDY6WKJVM');
+</script>
+
+<!-- SCHEMA ORG (PERSON) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ildebrando Corrêa Leandro Filho",
+  "image": "https://professorildebrandoleandro.github.io/imagens/professor2.png",
+  "jobTitle": "Professor de Educação Física",
+  "url": "https://professorildebrandoleandro.github.io/",
+  "sameAs": [
+    "https://www.instagram.com/ildebrando_leandro/"
+  ]
+}
+</script>
+
+<style>
+
+body{
+    margin:0;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* LOGO TOPO CENTRAL */
+.logo{
+    width:300px;
+    margin:10px 0;
+}
+
+/* CANVAS */
+canvas{
+    background:#87CEEB;
+    display:block;
+}
+
+/* CONTROLES MOBILE */
+#controls{
+    position:fixed;
+    bottom:20px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+#controls button{
+    font-size:24px;
+    padding:15px;
+    border-radius:10px;
+    border:none;
+    background:rgba(0,0,0,0.6);
+    color:white;
+}
+
+@media(min-width:768px){
+    #controls{ display:none; }
+}
+
+</style>
+</head>
+
+<body>
+
+<img src="logo.png" class="logo">
+
+<canvas id="game"></canvas>
+
+<div id="controls">
+    <button id="left">⬅️</button>
+    <button id="jump">⬆️</button>
+    <button id="right">➡️</button>
+</div>
+
+<script>
+
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 900;
+canvas.height = 400;
+
+/* RESPONSIVO */
+function resize(){
+    const scale = Math.min(
+        window.innerWidth / canvas.width,
+        window.innerHeight / canvas.height
+    );
+    canvas.style.width = canvas.width * scale + "px";
+    canvas.style.height = canvas.height * scale + "px";
+}
+resize();
+window.addEventListener("resize", resize);
+
+/* IMAGENS */
+const playerImg = new Image(); playerImg.src = "jogo1.png";
+const coinImg = new Image(); coinImg.src = "jogo10.png";
+const blockImg = new Image(); blockImg.src = "jogo11.png";
+const pipeImg = new Image(); pipeImg.src = "jogo12.png";
+const enemyImg = new Image(); enemyImg.src = "jogo13.png";
+const groundImg = new Image(); groundImg.src = "jogo16.png";
+
+/* SONS */
+const coinSound = new Audio("coin.wav");
+const gameOverSound = new Audio("gameover.wav");
+
+/* PLAYER */
+let player = {
+    x:100,
+    y:250,
+    w:50,
+    h:50,
+    dy:0,
+    gravity:0.7,
+    jump:-12,
+    grounded:false
+};
+
+/* CONTROLES */
+let keys = {};
+
+document.getElementById("left").ontouchstart = ()=> keys.left=true;
+document.getElementById("left").ontouchend = ()=> keys.left=false;
+
+document.getElementById("right").ontouchstart = ()=> keys.right=true;
+document.getElementById("right").ontouchend = ()=> keys.right=false;
+
+document.getElementById("jump").ontouchstart = ()=> keys.jump=true;
+document.getElementById("jump").ontouchend = ()=> keys.jump=false;
+
+/* ELEMENTOS */
+let coins = [];
+let enemies = [];
+let pipes = [];
+let blocks = [];
+
+let score = 0;
+
+/* SPAWN */
+function spawnEnemy(){
+    enemies.push({
+        x: canvas.width,
+        y:260,
+        speed:2 + Math.random()*2
+    });
+}
+
+function spawnCoin(){
+    coins.push({
+        x: canvas.width,
+        y:150 + Math.random()*100
+    });
+}
+
+function spawnPipe(){
+    pipes.push({
+        x: canvas.width,
+        y:260
+    });
+}
+
+function spawnBlock(){
+    blocks.push({
+        x: canvas.width,
+        y:200
+    });
+}
+
+/* UPDATE */
+function update(){
+
+    if(keys.left) player.x -= 5;
+    if(keys.right) player.x += 5;
+
+    player.dy += player.gravity;
+    player.y += player.dy;
+
+    if(player.y + player.h > 300){
+        player.y = 300 - player.h;
+        player.dy = 0;
+        player.grounded = true;
+    }
+
+    if(keys.jump && player.grounded){
+        player.dy = player.jump;
+    }
+
+    /* MOEDAS */
+    coins.forEach(c=> c.x -= 3);
+    coins = coins.filter(c=>{
+        if(
+            player.x < c.x+30 &&
+            player.x+player.w > c.x &&
+            player.y < c.y+30 &&
+            player.y+player.h > c.y
+        ){
+            score++;
+            coinSound.currentTime = 0;
+            coinSound.play();
+            return false;
+        }
+        return true;
+    });
+
+    /* INIMIGOS */
+    enemies.forEach(e=>{
+        e.x -= e.speed;
+
+        if(
+            player.x < e.x+40 &&
+            player.x+player.w > e.x &&
+            player.y < e.y+40 &&
+            player.y+player.h > e.y
+        ){
+            gameOverSound.play();
+            setTimeout(()=>location.reload(),300);
+        }
+    });
+
+    /* CANOS */
+    pipes.forEach(p=> p.x -= 3);
+
+    /* BLOCOS */
+    blocks.forEach(b=> b.x -= 3);
+
+    /* SPAWN CONTÍNUO */
+    if(Math.random() < 0.02) spawnEnemy();
+    if(Math.random() < 0.03) spawnCoin();
+    if(Math.random() < 0.01) spawnPipe();
+    if(Math.random() < 0.015) spawnBlock();
+
+}
+
+/* DRAW */
+function draw(){
+
+    ctx.fillStyle="#87CEEB";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    /* CHÃO */
+    for(let i=0;i<canvas.width;i+=70){
+        ctx.drawImage(groundImg,i,300,70,50);
+    }
+
+    /* PLAYER */
+    ctx.drawImage(playerImg,player.x,player.y,player.w,player.h);
+
+    /* MOEDAS */
+    coins.forEach(c=>{
+        ctx.drawImage(coinImg,c.x,c.y,30,30);
+    });
+
+    /* CANOS */
+    pipes.forEach(p=>{
+        ctx.drawImage(pipeImg,p.x,p.y,60,60);
+    });
+
+    /* BLOCOS */
+    blocks.forEach(b=>{
+        ctx.drawImage(blockImg,b.x,b.y,40,40);
+    });
+
+    /* INIMIGOS */
+    enemies.forEach(e=>{
+        ctx.drawImage(enemyImg,e.x,e.y,40,40);
+    });
+
+    ctx.fillStyle="black";
+    ctx.fillText("Pontos: "+score,10,20);
+}
+
+/* LOOP */
+function loop(){
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+loop();
+
+</script>
+
+</body>
+</html>
