@@ -1,485 +1,139 @@
 <!doctype html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="content-language" content="pt-PT">
-<meta name="theme-color" content="#4f8f8f">
-
-<title> JOGOS ONLINE | FUGINDO DOS MONSTROS </title>
-<!-- SEO -->
-<meta name="description" content="Professor de Educação Física em Portugal. Treinos personalizados, emagrecimento, saúde e qualidade de vida. Atendimento profissional com resultados reais.">
-<meta name="author" content="Ildebrando Leandro">
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://professorildebrandoleandro.github.io/">
-
-<!-- GOOGLE VERIFICAÇÃO -->
-<meta name="google-site-verification" content="WnKot6Cz-R-KI7E2rQOBbm77-tIXL-c7BcpzlCtdvpI" />
-
-<!-- OPEN GRAPH (Facebook / WhatsApp) -->
-<meta property="og:title" content="Ildebrando Leandro | Professor de Educação Física">
-<meta property="og:description" content="Treinos personalizados, saúde e marketing digital em Portugal.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#030611">
+<title>Professor Ildebrando Leandro — Fugindo dos Monstros</title>
+<meta name="description" content="Jogo Fugindo dos Monstros do Professor Ildebrando Leandro.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Professor Ildebrando Leandro">
+<meta property="og:title" content="Professor Ildebrando Leandro — Fugindo dos Monstros">
+<meta property="og:description" content="Corra, pule, pegue moedas e fuja dos monstros com o Professor Ildebrando Leandro.">
+<meta property="og:url" content="https://professorildebrandoleandro.github.io/jogo/jogo.html">
 <meta property="og:image" content="https://professorildebrandoleandro.github.io/jogo/jogo.png">
+<meta property="og:image:secure_url" content="https://professorildebrandoleandro.github.io/jogo/jogo.png">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://professorildebrandoleandro.github.io/">
-<meta property="og:type" content="website">
-
-<!-- TWITTER -->
+<meta property="og:image:alt" content="Professor Ildebrando Leandro no jogo Fugindo dos Monstros">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ildebrando Leandro">
-<meta name="twitter:description" content="Educação Física e Marketing Digital em Portugal">
+<meta name="twitter:title" content="Professor Ildebrando Leandro — Fugindo dos Monstros">
+<meta name="twitter:description" content="Corra, pule e fuja dos monstros.">
 <meta name="twitter:image" content="https://professorildebrandoleandro.github.io/jogo/jogo.png">
-
-<!-- GEO -->
-<meta name="geo.region" content="PT">
-<meta name="geo.placename" content="Portugal">
-
-<!-- FAVICON -->
-  
-<link rel="icon" href="https://professorildebrandoleandro.github.io/jogo/favicon.png">
-
-<!-- ADSENSE -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360508033837336" crossorigin="anonymous"></script>
-
-<!-- GOOGLE ANALYTICS (MESMO CÓDIGO NOS 3 SITES) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FDY6WKJVM"></script>
+<link rel="icon" href="favicon.png">
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-6FDY6WKJVM');
+if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(w=>w.unregister()))}
+if("caches" in window){caches.keys().then(names=>names.forEach(name=>caches.delete(name)))}
 </script>
-
-<!-- SCHEMA ORG (PERSON) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ildebrando Corrêa Leandro Filho",
-  "image": "https://professorildebrandoleandro.github.io/imagens/professor2.png",
-  "jobTitle": "Professor de Educação Física",
-  "url": "https://professorildebrandoleandro.github.io/",
-  "sameAs": [
-    "https://www.instagram.com/ildebrando_leandro/"
-  ]
-}
-</script>
-
 <style>
-body { margin:0; background:black; overflow:hidden; }
-canvas { display:block; margin:auto; background:#87CEEB; }
+:root{--cyan:#00eaff;--pink:#ff2bd6;--lime:#61ff68;--gold:#ffd84a;--ink:#030611}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -20%,#172449 0,#080b18 42%,#02030a 100%);color:#fff;font-family:Inter,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+body{padding:clamp(8px,2vw,20px) clamp(8px,2vw,22px) calc(110px + env(safe-area-inset-bottom));touch-action:manipulation}
+.shell{width:min(1280px,100%);margin:auto}
+.brand{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;margin:0 auto 14px;width:min(720px,94vw);padding:12px 18px 16px;border-radius:26px;isolation:isolate;background:linear-gradient(145deg,#071225aa,#03071288);box-shadow:inset 0 0 22px #00eaff18}
+.brand:before{content:"";position:absolute;inset:0;border:3px solid transparent;border-radius:24px;background:conic-gradient(from var(--neon-angle),transparent 0 5%,var(--cyan) 10%,var(--pink) 25%,var(--gold) 42%,var(--lime) 58%,transparent 72% 100%) border-box;mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);mask-composite:exclude;filter:drop-shadow(0 0 7px var(--cyan)) drop-shadow(0 0 13px var(--pink));animation:logoOrbit 2.2s linear infinite;z-index:-1}
+.brand img{display:block;width:min(560px,82vw);max-height:118px;object-fit:contain;filter:drop-shadow(0 0 7px #00eaff) drop-shadow(0 0 15px #ff2bd6)}
+.brand-name{position:relative;bottom:auto;margin-top:10px;padding:7px 24px;border-radius:999px;background:linear-gradient(90deg,#07162eee,#130922ee);border:1px solid #00eaff;font-weight:900;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(10px,1.8vw,16px);white-space:nowrap;animation:nameGlow 1.5s ease-in-out infinite alternate;backdrop-filter:blur(8px)}
+@property --neon-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes logoOrbit{to{--neon-angle:360deg;filter:hue-rotate(360deg) drop-shadow(0 0 12px #00eaff)}}
+@keyframes nameGlow{from{color:#fff;box-shadow:0 0 5px #00eaff,inset 0 0 4px #00eaff}to{color:#fff8a9;box-shadow:0 0 12px #ff2bd6,0 0 24px #00eaff,inset 0 0 9px #ff2bd6}}
+.game-frame{position:relative;margin-top:22px;border-radius:22px;overflow:hidden;border:2px solid #163c59;background:#02040b;box-shadow:0 0 15px #00eaff55,0 0 35px #ff2bd633,inset 0 0 25px #00eaff18}
+canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#071127}
+.hud{position:absolute;inset:12px 14px auto;display:flex;justify-content:space-between;gap:8px;pointer-events:none;z-index:3}
+.hud-group{display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:#020714d9;border:1px solid #1fc8ff;border-radius:999px;padding:7px 13px;font-weight:800;font-size:clamp(11px,1.5vw,16px);box-shadow:0 0 10px #00eaff55;backdrop-filter:blur(7px)}
+.pill b{color:var(--gold)}
+.top-actions{position:absolute;top:58px;right:14px;display:flex;gap:7px;z-index:5}
+.round{width:42px;height:42px;border-radius:50%;border:1px solid #26dfff;background:#061026dc;color:#fff;font-size:19px;cursor:pointer;box-shadow:0 0 10px #00eaff80;transition:.18s}
+.round:hover,.round:focus-visible{transform:scale(1.09);box-shadow:0 0 18px #ff2bd6}
+.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(#02040aa6,#02040ae8);z-index:8;backdrop-filter:blur(5px)}
+.overlay.hidden{display:none}
+.card{width:min(560px,95%);text-align:center;padding:clamp(18px,4vw,34px);border:1px solid #00eaff;border-radius:26px;background:linear-gradient(145deg,#0a1328f2,#080510f2);box-shadow:0 0 18px #00eaff66,0 0 44px #ff2bd644}
+.card h1{margin:0 0 8px;font-size:clamp(27px,5vw,52px);line-height:1;text-transform:uppercase;background:linear-gradient(90deg,#5effff,#fff,#ff58dc,#ffe85c);background-size:250%;-webkit-background-clip:text;color:transparent;animation:shine 2.4s linear infinite}
+@keyframes shine{to{background-position:250%}}
+.card p{color:#c9d8ff;margin:10px auto 18px;line-height:1.5}
+.neon-btn{border:1px solid currentColor;border-radius:14px;padding:13px 22px;min-width:160px;font-weight:900;font-size:17px;letter-spacing:.05em;color:#031019;background:linear-gradient(135deg,#6affff,#00eaff);cursor:pointer;box-shadow:0 0 9px #00eaff,0 0 24px #00eaff88;transition:.18s}
+.neon-btn:hover,.neon-btn:focus-visible{transform:translateY(-2px) scale(1.03);filter:brightness(1.12);box-shadow:0 0 12px #fff,0 0 34px #ff2bd6}
+.tip{font-size:12px;color:#8da3c7!important}
+.touch-controls{display:none;position:fixed;left:0;right:0;bottom:calc(10px + env(safe-area-inset-bottom));z-index:30;justify-content:space-between;align-items:end;padding:0 18px;pointer-events:none}
+.touch-side{display:flex;gap:12px;pointer-events:auto}
+.touch-btn{width:68px;height:68px;border-radius:20px;border:2px solid #00eaff;background:#061028d9;color:white;font-size:28px;font-weight:bold;box-shadow:0 0 12px #00eaff,inset 0 0 13px #00eaff44;touch-action:none;user-select:none}
+.touch-btn.jump{width:82px;height:82px;border-color:#ff42dc;box-shadow:0 0 14px #ff2bd6,inset 0 0 15px #ff2bd655}
+.touch-btn:active,.touch-btn.active{transform:scale(.92);background:#123a5b;filter:brightness(1.35)}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px auto 0}
+.menu a{display:flex;justify-content:center;align-items:center;gap:8px;min-height:62px;text-decoration:none;color:#fff;border-radius:17px;border:2px solid #1f6b86;background:linear-gradient(145deg,#0a1930,#040912);box-shadow:inset 0 0 15px #00eaff2b,0 0 12px #00eaff55;font-weight:900;letter-spacing:.03em;transition:.18s;touch-action:manipulation}
+.menu a:nth-child(2){border-color:#ff2bd6}.menu a:nth-child(3){border-color:#61ff68}.menu a:nth-child(4){border-color:#ffd84a}
+.menu a:hover,.menu a:focus-visible{transform:translateY(-3px) scale(1.02);box-shadow:0 0 20px #00eaff;background:#101b31;outline:none}.menu a:active{transform:scale(.96);filter:brightness(1.35)}
+@media(max-width:820px),(pointer:coarse){.touch-controls.active{display:flex}.menu{grid-template-columns:repeat(2,1fr)}.top-actions{top:50px}.pill{padding:6px 9px}.brand{margin-top:2px}.game-frame{border-radius:15px}}
+@media(max-width:820px),(pointer:coarse){.overlay{align-items:flex-start;padding:12px;overflow:auto}.card{margin-top:36px;padding:14px 12px;border-radius:18px}.card h1{font-size:clamp(22px,7vw,34px)}.card p{font-size:12px;margin:7px auto 10px;line-height:1.35}.card .tip{display:none}.neon-btn{padding:10px 15px;font-size:14px;min-width:145px}}
+@media(max-width:480px){body{padding:5px 5px 108px}.brand{padding:8px 9px 11px}.brand img{max-height:76px}.brand-name{bottom:auto;margin-top:8px;padding:5px 10px;letter-spacing:.07em}.game-frame{margin-top:34px}.game-frame:has(.overlay:not(.hidden)){min-height:315px}.overlay{padding:8px}.hud{inset:7px 7px auto}.pill{font-size:10px}.top-actions{top:39px;right:7px}.round{width:35px;height:35px}.touch-controls{padding:0 10px}.touch-btn{width:60px;height:60px}.touch-btn.jump{width:72px;height:72px}.menu{gap:10px}.menu a{font-size:14px;min-height:58px;padding:8px 5px}.card{margin-top:0;padding:10px}.card h1{font-size:22px}.card p{font-size:11px}.neon-btn{padding:9px 13px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style>
 </head>
-
 <body>
-<canvas id="game" width="900" height="400"></canvas>
-
+<main class="shell">
+  <header class="brand"><img src="assets/logo-ildebrando.png" alt="Logotipo do leão dourado de Ildebrando Leandro"><div class="brand-name">Ildebrando Leandro • Fugindo dos Monstros</div></header>
+  <section class="game-frame" aria-label="Jogo Neon Run">
+    <canvas id="game" width="1280" height="720"></canvas>
+    <div class="hud"><div class="hud-group"><div class="pill">⭐ <b id="score">0</b></div><div class="pill">🪙 <b id="coins">0</b></div></div><div class="pill">🏆 <b id="best">0</b></div></div>
+    <div class="top-actions"><button class="round" id="sound" aria-label="Som">🔊</button><button class="round" id="pause" aria-label="Pausar">⏸</button><button class="round" id="full" aria-label="Tela cheia">⛶</button></div>
+    <div class="overlay" id="startOverlay"><div class="card"><h1>Fugindo dos Monstros</h1><p>Corra, pule obstáculos, pegue moedas e ajude o Professor Ildebrando Leandro a superar novos desafios.</p><button class="neon-btn" id="start">▶ JOGAR AGORA</button><p class="tip">Computador: setas ou A/D + Espaço • Celular: use os botões na tela</p></div></div>
+    <div class="overlay hidden" id="endOverlay"><div class="card"><h1 id="endTitle">Fim de jogo</h1><p id="endText"></p><button class="neon-btn" id="restart">↻ JOGAR NOVAMENTE</button></div></div>
+  </section>
+  <nav class="menu"><a href="https://professorildebrandoleandro.github.io/jogo/GPS.html">🌍 GPS</a><a href="https://professorildebrandoleandro.github.io/jogo/jogo.html">🎮 JOGO</a><a href="https://professorildebrandoleandro.github.io/jogo/index.html">🔎 SEARCH</a><a href="https://professorildebrandoleandro.github.io/jogo/calculadora.html">🧮 CALCULADORA</a></nav>
+</main>
+<div class="touch-controls" aria-label="Controles do jogo"><div class="touch-side"><button class="touch-btn" data-key="left">◀</button><button class="touch-btn" data-key="right">▶</button></div><div class="touch-side"><button class="touch-btn jump" data-key="jump">⬆</button></div></div>
 <script>
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
-
-function load(src){
-    const img = new Image();
-    img.src = src;
-    return img;
-}
-
-//////////////////////////////////////////////////
-// 🔊 SISTEMA DE SOM EMBUTIDO (SEM MP3)
-//////////////////////////////////////////////////
-const AudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-function beep(freq, duration){
-    const osc = AudioCtx.createOscillator();
-    const gain = AudioCtx.createGain();
-
-    osc.connect(gain);
-    gain.connect(AudioCtx.destination);
-
-    osc.frequency.value = freq;
-    osc.type = "square";
-
-    gain.gain.setValueAtTime(0.1, AudioCtx.currentTime);
-
-    osc.start();
-    osc.stop(AudioCtx.currentTime + duration);
-}
-
-// sons estilo jogo
-function somPulo(){ beep(600, 0.1); }
-function somMoeda(){ beep(1000, 0.1); }
-function somGameOver(){ beep(200, 0.3); }
-
-// música simples contínua
-let musicaAtiva = false;
-
-function musicaLoop(){
-    if(!musicaAtiva) return;
-
-    beep(300,0.2);
-    setTimeout(()=>beep(400,0.2),200);
-    setTimeout(()=>beep(500,0.2),400);
-    setTimeout(musicaLoop,800);
-}
-
-// desbloquear áudio
-document.addEventListener("click", ()=>{
-    AudioCtx.resume();
-    if(!musicaAtiva){
-        musicaAtiva = true;
-        musicaLoop();
-    }
-}, {once:true});
-
-//////////////////////////////////////////////////
-// IMAGENS
-//////////////////////////////////////////////////
-const idle = load("jogo1.png");
-const walk1 = load("jogo5.png");
-const walk2 = load("jogo6.png");
-const jumpImg = load("jogo7.png");
-
-const coinImg = load("jogo10.png");
-const enemyImg = load("jogo13.png");
-const blocoImg = load("jogo11.png");
-
-const groundImg = load("jogo16.png");
-const logo = load("logo.png");
-
-//////////////////////////////////////////////////
-// PLAYER
-//////////////////////////////////////////////////
-let player = {
-    x:100,y:100,w:60,h:60,
-    dy:0,gravity:0.8,jump:-15,grounded:false
-};
-
-let keys = {};
-let frame = 0;
-let cameraX = 0;
-let score = 0;
-
-let groundParts = [
-    {x:0, width:600},
-    {x:720, width:500}
-];
-
-let groundY = 300;
-
-let enemies = [{x:900,y:270}];
-let blocks = [{x:500,y:220}];
-let coins = [{x:400,y:250}];
-
-function collision(a,b,w=40,h=40){
-    return a.x < b.x+w &&
-           a.x+a.w > b.x &&
-           a.y < b.y+h &&
-           a.y+a.h > b.y;
-}
-
-function drawPlayer(){
-    let img;
-
-    if(!player.grounded) img = jumpImg;
-    else if(keys["ArrowRight"] || keys["ArrowLeft"]){
-        frame++;
-        img = frame%20<10 ? walk1 : walk2;
-    } else img = idle;
-
-    ctx.drawImage(img, player.x, player.y, player.w, player.h);
-}
-
-function gerarTerreno(){
-    let ultimo = groundParts[groundParts.length-1].x;
-    let gap = 120 + Math.random()*120;
-    let inicio = ultimo + gap;
-
-    groundParts.push({
-        x:inicio,
-        width:300 + Math.random()*300
-    });
-
-    enemies.push({ x:inicio+150, y:270 });
-    blocks.push({ x:inicio+120, y:180 });
-    coins.push({ x:inicio+180, y:240 });
-}
-
-function update(){
-
-    if(keys["ArrowRight"]) player.x += 6;
-    if(keys["ArrowLeft"]) player.x -= 6;
-
-    player.dy += player.gravity;
-    player.y += player.dy;
-
-    player.grounded = false;
-
-    groundParts.forEach(g=>{
-        if(player.x+player.w > g.x && player.x < g.x+g.width){
-            if(player.y+player.h > groundY){
-                player.y = groundY-player.h;
-                player.dy = 0;
-                player.grounded = true;
-            }
-        }
-    });
-
-    blocks.forEach(b=>{
-        if(
-            player.x + player.w > b.x &&
-            player.x < b.x + 40 &&
-            player.y + player.h > b.y &&
-            player.y + player.h < b.y + 20 &&
-            player.dy >= 0
-        ){
-            player.y = b.y - player.h;
-            player.dy = 0;
-            player.grounded = true;
-        }
-    });
-
-    if((keys[" "] || keys["ArrowUp"]) && player.grounded){
-        player.dy = player.jump;
-        somPulo();
-    }
-
-    if(!player.grounded && player.y > 500){
-        somGameOver();
-        setTimeout(()=>location.reload(),300);
-    }
-
-    enemies.forEach(e=>{
-        e.x += (player.x < e.x ? -2 : 2);
-
-        if(collision(player,e)){
-            somGameOver();
-            setTimeout(()=>location.reload(),300);
-        }
-    });
-
-    coins = coins.filter(c=>{
-        if(collision(player,c,20,20)){
-            score++;
-            somMoeda();
-            return false;
-        }
-        return true;
-    });
-
-    cameraX = player.x - 200;
-
-    if(player.x > groundParts[groundParts.length-1].x - 300){
-        gerarTerreno();
-    }
-}
-
-function draw(){
-
-    ctx.fillStyle="#87CEEB";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    ctx.drawImage(logo, canvas.width/2 - 250, 10, 500, 120);
-
-    groundParts.forEach(g=>{
-        for(let i=0;i<g.width;i+=80){
-            ctx.drawImage(groundImg, g.x+i-cameraX, groundY, 80, 40);
-        }
-    });
-
-    blocks.forEach(b=>{
-        ctx.drawImage(blocoImg, b.x-cameraX, b.y,40,40);
-    });
-
-    coins.forEach(c=>{
-        ctx.drawImage(coinImg, c.x-cameraX, c.y,20,20);
-    });
-
-    enemies.forEach(e=>{
-        ctx.drawImage(enemyImg, e.x-cameraX, e.y,30,30);
-    });
-
-    ctx.save();
-    ctx.translate(-cameraX,0);
-    drawPlayer();
-    ctx.restore();
-
-    ctx.fillStyle="black";
-    ctx.fillText("Pontos: "+score,20,20);
-}
-
-function loop(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    update();
-    draw();
-    requestAnimationFrame(loop);
-}
-
-document.addEventListener("keydown",e=>keys[e.key]=true);
-document.addEventListener("keyup",e=>keys[e.key]=false);
-
-loop();
-
-
-document.getElementById("left").ontouchstart = () => keys["ArrowLeft"] = true;
-document.getElementById("left").ontouchend = () => keys["ArrowLeft"] = false;
-
-document.getElementById("right").ontouchstart = () => keys["ArrowRight"] = true;
-document.getElementById("right").ontouchend = () => keys["ArrowRight"] = false;
-
-document.getElementById("jump").ontouchstart = () => keys[" "] = true;
-document.getElementById("jump").ontouchend = () => keys[" "] = false;
+(()=>{
+"use strict";
+const canvas=document.querySelector("#game"),ctx=canvas.getContext("2d"),W=1280,H=720;
+ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
+const $=s=>document.querySelector(s),load=src=>{const i=new Image();i.src=src;return i};
+const img={logo:load("assets/logo-ildebrando.png"),idle:load("jogo1.png"),walk1:load("jogo5.png"),walk2:load("jogo6.png"),run:load("jogo6.png"),jump:load("jogo7.png"),coin:load("jogo10.png"),enemy:load("jogo13.png"),block:load("jogo11.png"),pipe:load("jogo12.png"),ground:load("jogo16.png")};
+const sounds={jump:new Audio("jumping.wav"),coin:new Audio("coin.wav"),over:new Audio("gameover.wav"),music:new Audio("musicgame.mp3")};sounds.music.loop=true;sounds.music.volume=.25;sounds.jump.volume=.45;sounds.coin.volume=.55;sounds.over.volume=.55;
+let muted=false,running=false,paused=false,last=0,camera=0,score=0,coinCount=0,speedLevel=1,spawnUntil=2100,shake=0;
+let best=Number(localStorage.getItem("ildebrando-neon-best")||0);$("#best").textContent=best;
+const keys={left:false,right:false,jump:false};
+const player={x:250,y:420,w:108,h:164,vx:0,vy:0,grounded:false,coyote:0,jumpBuffer:0,facing:1,step:0,glow:0,dead:false};
+let platforms=[],objects=[],particles=[],stars=[];
+for(let i=0;i<95;i++)stars.push({x:Math.random()*W,y:Math.random()*H*.7,r:Math.random()*2+.4,a:Math.random()});
+function resetWorld(){platforms=[{x:-200,y:590,w:1300},{x:1250,y:590,w:760},{x:2130,y:590,w:900}];objects=[];particles=[];spawnUntil=2800;camera=0;score=coinCount=0;speedLevel=1;Object.assign(player,{x:250,y:420,vx:0,vy:0,grounded:false,coyote:0,jumpBuffer:0,facing:1,step:0,glow:0,dead:false});populate(0,2800);updateHud()}
+function populate(from,to){for(let x=Math.max(620,from+120);x<to;x+=145+Math.random()*115){let r=Math.random();if(r<.22)objects.push({type:"enemy",x,y:548,w:56,h:44,dir:-1,phase:Math.random()*6});else if(r<.34)objects.push({type:"ghost",x,y:385+Math.random()*110,w:62,h:70,dir:-1,phase:Math.random()*6});else if(r<.45)objects.push({type:"mummy",x,y:500,w:52,h:90,dir:-1,phase:Math.random()*6});else if(r<.56)objects.push({type:"zombie",x,y:505,w:58,h:85,dir:-1,phase:Math.random()*6});else if(r<.76)objects.push({type:"block",x,y:430-Math.random()*105,w:68,h:68});else if(r<.91)objects.push({type:"pipe",x,y:490,w:78,h:100});let amount=3+Math.floor(Math.random()*4);for(let k=0;k<amount;k++)objects.push({type:"coin",x:x+18+k*43,y:390-Math.sin((k/(amount-1||1))*Math.PI)*105,w:38,h:38,t:Math.random()*6});if(Math.random()<.28)objects.push({type:Math.random()<.34?"enemy":Math.random()<.5?"mummy":"zombie",x:x+95,y:Math.random()<.5?548:500,w:56,h:Math.random()<.5?44:90,dir:-1,phase:Math.random()*6})}}
+function extend(){let lastP=platforms[platforms.length-1],gap=105+Math.random()*95,start=lastP.x+lastP.w+gap,w=650+Math.random()*700;platforms.push({x:start,y:590-(Math.random()<.18?60:0),w});populate(spawnUntil,start+w);spawnUntil=start+w}
+function play(name){if(muted)return;let a=sounds[name];try{a.currentTime=0;a.play()}catch(e){}}
+function dust(x,y,color="#65efff",n=7){for(let i=0;i<n;i++)particles.push({x,y,vx:(Math.random()-.5)*5,vy:-Math.random()*4-1,life:1,size:2+Math.random()*6,color})}
+function blood(x,y){dust(x,y,"#ff174d",19);for(let i=0;i<5;i++)particles.push({x:x+(Math.random()-.5)*35,y:y+20,vx:(Math.random()-.5)*2,vy:Math.random(),life:1.6,size:5+Math.random()*8,color:"#9d002c"})}
+function hit(a,b){return a.x+a.w*.18<b.x+b.w&&a.x+a.w*.82>b.x&&a.y+a.h*.12<b.y+b.h&&a.y+a.h>b.y}
+function jump(){player.jumpBuffer=.14}
+function update(dt){if(!running||paused||player.dead)return;dt=Math.min(dt,.032);speedLevel=1+Math.min(2.3,score/1800);let acc=player.grounded?4200:2600,max=760+speedLevel*85;
+let move=(keys.right?1:0)-(keys.left?1:0);if(move){player.vx+=move*acc*dt;player.facing=move;player.step+=Math.abs(player.vx)*dt*1.9;if(player.grounded&&Math.abs(player.vx)>180&&Math.random()<.48)dust(player.x+player.w/2-player.facing*25,player.y+player.h-8,Math.random()<.5?"#00eaff":"#ff2bd6",2)}else player.vx*=Math.pow(player.grounded?.0003:.09,dt);player.vx=Math.max(-max,Math.min(max,player.vx));
+if(keys.jump)player.jumpBuffer=.12;else player.jumpBuffer=Math.max(0,player.jumpBuffer-dt);player.coyote=player.grounded?.10:Math.max(0,player.coyote-dt);if(player.jumpBuffer>0&&player.coyote>0){player.vy=-990;player.grounded=false;player.coyote=0;player.jumpBuffer=0;play("jump");dust(player.x+player.w/2,player.y+player.h,"#ff4cda",12)}
+player.vy+=3500*dt;player.vy=Math.min(1500,player.vy);let oldBottom=player.y+player.h;player.x+=player.vx*dt;player.y+=player.vy*dt;player.grounded=false;
+let surfaces=platforms.map(p=>({x:p.x,y:p.y,w:p.w,h:70})).concat(objects.filter(o=>o.type==="block"||o.type==="pipe"));
+for(const p of surfaces){if(player.x+player.w*.72>p.x&&player.x+player.w*.28<p.x+p.w&&oldBottom<=p.y+12&&player.y+player.h>=p.y&&player.vy>=0){player.y=p.y-player.h;player.vy=0;if(!player.grounded&&Math.abs(player.vx)>110&&Math.random()<.45)dust(player.x+player.w/2,p.y,"#4effa3",3);player.grounded=true}}
+for(const o of objects){if(o.type==="coin"){o.t+=dt*6;if(!o.got&&hit(player,{x:o.x,y:o.y+Math.sin(o.t)*7,w:o.w,h:o.h})){o.got=true;coinCount++;score+=50;player.glow=1.2;play("coin");dust(o.x+20,o.y+20,"#ffe34d",16)}}else if(["enemy","ghost","mummy","zombie"].includes(o.type)){o.phase+=dt*(o.type==="mummy"||o.type==="zombie"?3:5);o.x+=o.dir*((o.type==="mummy"?38:o.type==="zombie"?45:o.type==="ghost"?72:55)+speedLevel*12)*dt;if(o.type==="ghost")o.y+=Math.sin(o.phase)*22*dt;if(hit(player,o)){if(player.vy>180&&player.y+player.h<o.y+28){o.dead=true;player.vy=-450;score+=o.type==="ghost"?180:o.type==="mummy"?150:100;shake=8;blood(o.x+o.w/2,o.y+o.h/2)}else gameOver()}}}
+objects=objects.filter(o=>!o.got&&!o.dead&&o.x>camera-400);score+=Math.max(0,player.vx)*dt*.045;player.glow=Math.max(0,player.glow-dt);camera+=(Math.max(0,player.x-W*.32)-camera)*Math.min(1,dt*5.5);while(player.x>spawnUntil-1500)extend();platforms=platforms.filter(p=>p.x+p.w>camera-500);if(player.y>H+180)gameOver();shake*=.86;updateParticles(dt);updateHud()}
+function updateParticles(dt){particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.18;p.life-=dt*1.8});particles=particles.filter(p=>p.life>0)}
+function updateHud(){$("#score").textContent=Math.floor(score);$("#coins").textContent=coinCount}
+function gameOver(){if(player.dead)return;document.querySelector(".touch-controls").classList.remove("active");player.dead=true;running=false;play("over");sounds.music.pause();let final=Math.floor(score);if(final>best){best=final;localStorage.setItem("ildebrando-neon-best",best);$("#best").textContent=best}$("#endTitle").textContent=final>=best&&final>0?"Novo recorde!":"Fim de jogo";$("#endText").textContent=`Você fez ${final} pontos e pegou ${coinCount} moedas.`;setTimeout(()=>$("#endOverlay").classList.remove("hidden"),500)}
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function drawSceneBrand(t){const x=W/2-290,y=82,w=580,h=190,r=26,phase=(t*.16)%(2*(w+h));ctx.save();ctx.globalAlpha=.94;ctx.fillStyle="#020615d9";ctx.shadowColor="#00eaff";ctx.shadowBlur=24;roundRect(x,y,w,h,r);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle="#173b69";ctx.lineWidth=3;ctx.stroke();const perimeter=2*(w+h),p=phase/perimeter;ctx.setLineDash([120,perimeter-120]);ctx.lineDashOffset=-phase;ctx.strokeStyle=p<.5?"#00eaff":"#ff2bd6";ctx.lineWidth=7;ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=22;roundRect(x,y,w,h,r);ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=20;ctx.shadowColor="#ff2bd6";if(img.logo.complete&&img.logo.naturalWidth)ctx.drawImage(img.logo,x+55,y+20,w-110,112);ctx.shadowBlur=10;ctx.textAlign="center";ctx.font="900 22px Arial";ctx.fillStyle="#fff";ctx.fillText("PROFESSOR ILDEBRANDO LEANDRO",W/2,y+158);ctx.font="800 13px Arial";ctx.fillStyle="#71f8ff";ctx.fillText("FUGINDO DOS MONSTROS • CORRA • PULE • VENÇA",W/2,y+181);ctx.restore()}
+function drawBg(t){let grad=ctx.createLinearGradient(0,0,0,H);grad.addColorStop(0,"#080b2b");grad.addColorStop(.58,"#102b50");grad.addColorStop(1,"#07121c");ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);for(const s of stars){s.a=.35+.35*Math.sin(t*.001+s.x);ctx.globalAlpha=s.a;ctx.fillStyle="#bfefff";ctx.shadowColor=Math.floor(s.x)%2?"#00eaff":"#ff2bd6";ctx.shadowBlur=7;ctx.fillRect((s.x-camera*.03+W)%W,s.y,s.r,s.r)}ctx.shadowBlur=0;ctx.globalAlpha=1;drawSceneBrand(t);for(let i=0;i<8;i++){let x=((i*240-camera*.12)%(W+300))-120;ctx.fillStyle="#0b1738";ctx.beginPath();ctx.moveTo(x,590);ctx.lineTo(x+140,280+i%3*35);ctx.lineTo(x+300,590);ctx.fill();ctx.strokeStyle=i%2?"#00eaff88":"#ff2bd677";ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=10;ctx.stroke()}ctx.shadowBlur=0;ctx.strokeStyle="#00eaff44";ctx.lineWidth=1;for(let y=360;y<590;y+=35){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}for(let x=-camera%75;x<W;x+=75){ctx.beginPath();ctx.moveTo(x,360);ctx.lineTo(x,590);ctx.stroke()}for(let i=0;i<5;i++){let lx=((i*310-t*.12-camera*.2)%(W+380))-100;ctx.fillStyle=i%2?"#00eaff22":"#ff2bd622";ctx.shadowColor=i%2?"#00eaff":"#ff2bd6";ctx.shadowBlur=18;ctx.fillRect(lx,145+i*48,190,3)}ctx.shadowBlur=0}
+function glowDraw(image,x,y,w,h,color="#00eaff",blur=13){ctx.save();ctx.shadowColor=color;ctx.shadowBlur=blur;ctx.drawImage(image,x,y,w,h);ctx.restore()}
+function drawGhost(o){ctx.save();ctx.translate(o.x,o.y+Math.sin(o.phase)*7);ctx.shadowColor="#b8f7ff";ctx.shadowBlur=22;ctx.fillStyle="#d9fbffdf";ctx.beginPath();ctx.arc(o.w/2,25,29,Math.PI,0);ctx.lineTo(o.w,58);for(let i=3;i>=0;i--)ctx.quadraticCurveTo(i*o.w/4+o.w/8,72,i*o.w/4,58);ctx.closePath();ctx.fill();ctx.shadowBlur=4;ctx.fillStyle="#15122d";ctx.beginPath();ctx.ellipse(21,25,6,10,0,0,Math.PI*2);ctx.ellipse(42,25,6,10,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(31,44,8,10,0,0,Math.PI*2);ctx.fill();ctx.restore()}
+function drawMummy(o){ctx.save();ctx.translate(o.x,o.y);ctx.shadowColor="#f4ff9a";ctx.shadowBlur=13;ctx.fillStyle="#c9c49c";roundRect(7,4,o.w-14,o.h-6,13);ctx.fill();ctx.strokeStyle="#68634d";ctx.lineWidth=5;for(let y=13;y<o.h-4;y+=12){ctx.beginPath();ctx.moveTo(7,y);ctx.lineTo(o.w-7,y+6);ctx.stroke()}ctx.fillStyle="#15130b";ctx.fillRect(10,21,o.w-20,18);ctx.fillStyle="#ff244f";ctx.shadowColor="#ff174d";ctx.shadowBlur=10;ctx.beginPath();ctx.arc(20,30,4,0,Math.PI*2);ctx.arc(34,30,4,0,Math.PI*2);ctx.fill();ctx.restore()}
+function drawZombie(o){ctx.save();ctx.translate(o.x,o.y+Math.sin(o.phase)*2);ctx.shadowColor="#58ff66";ctx.shadowBlur=18;ctx.fillStyle="#517a53";roundRect(8,2,o.w-16,o.h-4,12);ctx.fill();ctx.fillStyle="#233728";ctx.fillRect(5,47,o.w-10,36);ctx.fillStyle="#b7ff4b";ctx.shadowColor="#61ff68";ctx.shadowBlur=12;ctx.beginPath();ctx.arc(21,24,5,0,Math.PI*2);ctx.arc(38,24,5,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#152019";ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(17,40);ctx.lineTo(42,38);ctx.stroke();ctx.strokeStyle="#67a56e";ctx.beginPath();ctx.moveTo(10,55);ctx.lineTo(-5,72);ctx.moveTo(o.w-10,55);ctx.lineTo(o.w+6,68);ctx.stroke();ctx.restore()}
+function drawWorld(t){ctx.save();ctx.translate(-camera,0);for(let pi=0;pi<platforms.length;pi++){let p=platforms[pi];for(let x=p.x;x<p.x+p.w;x+=120)ctx.drawImage(img.ground,x,p.y,122,72);let pc=pi%2?"#00eaff":"#00ff9d";ctx.fillStyle=pc;ctx.shadowColor=pc;ctx.shadowBlur=22;ctx.fillRect(p.x,p.y,p.w,7);ctx.fillStyle="#ff2bd6";ctx.shadowColor="#ff2bd6";ctx.fillRect(p.x,p.y+9,p.w,2);ctx.shadowBlur=0}for(const o of objects){if(o.type==="coin"){let cy=o.y+Math.sin(o.t)*7;ctx.strokeStyle="#fff24a";ctx.shadowColor="#ffd400";ctx.shadowBlur=18;ctx.lineWidth=3;ctx.beginPath();ctx.arc(o.x+o.w/2,cy+o.h/2,o.w*.72+Math.sin(o.t)*4,0,Math.PI*2);ctx.stroke();ctx.shadowBlur=0;glowDraw(img.coin,o.x,cy,o.w,o.h,"#ffd400",24)}if(o.type==="block")glowDraw(img.block,o.x,o.y,o.w,o.h,"#ff9d00",15);if(o.type==="pipe")glowDraw(img.pipe,o.x,o.y,o.w,o.h,"#20ff79",20);if(o.type==="enemy")glowDraw(img.enemy,o.x,o.y+Math.sin(o.phase)*3,o.w,o.h,"#ff334f",18);if(o.type==="ghost")drawGhost(o);if(o.type==="mummy")drawMummy(o);if(o.type==="zombie")drawZombie(o)}for(const p of particles){ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.shadowColor=p.color;ctx.shadowBlur=13;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(0,p.size*p.life),0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;let sprite=img.idle;if(!player.grounded)sprite=img.jump;else if(Math.abs(player.vx)>35)sprite=(Math.floor(player.step/28)%2?img.walk1:img.walk2);let bob=player.grounded&&Math.abs(player.vx)>35?Math.sin(player.step/13)*4:0,stretch=Math.min(.09,Math.abs(player.vy)/700*.09),dw=player.w*(1-stretch),dh=player.h*(1+stretch),px=player.x+(player.w-dw)/2,py=player.y+bob+(player.h-dh);ctx.save();if(player.facing<0){ctx.translate(px+dw,0);ctx.scale(-1,1);px=0}let neon=player.glow>0?"#fff34d":(Math.sin(t*.004)>0.74?"#ff35dc":"#00eaff");ctx.shadowColor=neon;ctx.shadowBlur=player.glow>0?42:24;ctx.drawImage(sprite,px,py,dw,dh);ctx.restore();ctx.restore()}
+function draw(t){ctx.save();if(shake)ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);drawBg(t);drawWorld(t);ctx.restore();let vign=ctx.createRadialGradient(W/2,H/2,250,W/2,H/2,760);vign.addColorStop(0,"transparent");vign.addColorStop(1,"#0009");ctx.fillStyle=vign;ctx.fillRect(0,0,W,H)}
+function loop(t){let dt=(t-last)/1000||0;last=t;update(dt);draw(t);requestAnimationFrame(loop)}
+function begin(){resetWorld();document.querySelector(".touch-controls").classList.add("active");running=true;paused=false;$("#startOverlay").classList.add("hidden");$("#endOverlay").classList.add("hidden");$("#pause").textContent="⏸";if(!muted)sounds.music.play().catch(()=>{})}
+$("#start").onclick=begin;$("#restart").onclick=begin;$("#pause").onclick=()=>{if(!running)return;paused=!paused;$("#pause").textContent=paused?"▶":"⏸";paused?sounds.music.pause():(!muted&&sounds.music.play().catch(()=>{}))};$("#sound").onclick=()=>{muted=!muted;$("#sound").textContent=muted?"🔇":"🔊";if(muted)sounds.music.pause();else if(running&&!paused)sounds.music.play().catch(()=>{})};$("#full").onclick=()=>{let el=document.querySelector(".game-frame");if(!document.fullscreenElement)el.requestFullscreen?.();else document.exitFullscreen?.()};
+document.addEventListener("keydown",e=>{let k=e.key.toLowerCase();if(["arrowleft","a"].includes(k))keys.left=true;if(["arrowright","d"].includes(k))keys.right=true;if(["arrowup","w"," "].includes(k)){keys.jump=true;jump();e.preventDefault()}if(k==="p")$("#pause").click()});document.addEventListener("keyup",e=>{let k=e.key.toLowerCase();if(["arrowleft","a"].includes(k))keys.left=false;if(["arrowright","d"].includes(k))keys.right=false;if(["arrowup","w"," "].includes(k)){keys.jump=false;if(player.vy<-280)player.vy*=.55}});
+document.querySelectorAll(".touch-btn").forEach(b=>{let key=b.dataset.key;let down=e=>{e.preventDefault();b.classList.add("active");keys[key]=true;if(key==="jump")jump();b.setPointerCapture?.(e.pointerId)};let up=e=>{e.preventDefault();b.classList.remove("active");keys[key]=false};b.addEventListener("pointerdown",down);b.addEventListener("pointerup",up);b.addEventListener("pointercancel",up)});
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&running&&!paused)$("#pause").click()});resetWorld();requestAnimationFrame(loop);
+})();
 </script>
-
-<style>
-body{
-    margin:0;
-    background:black;
-    font-family:Arial;
-    color:white;
-}
-
-canvas { 
-    display:block; 
-    margin:auto; 
-}
-canvas { display:block; margin:auto;
-
-}
-
-canvas {
-    display:block;
-    margin:20px auto;
-}
-
-
-
-/* LOGO */
-.logo{
-    font-size:50px;
-    margin-bottom:40px;
-    animation: neonTitle 1.5s infinite alternate;
-}
-
-@keyframes neonTitle{
-    0%{color:#0ff; text-shadow:0 0 10px #0ff;}
-    50%{color:#ff00ff; text-shadow:0 0 20px #ff00ff;}
-    100%{color:#00ff00; text-shadow:0 0 20px #00ff00;}
-}
-
-/* GRID */
-.menu{
-    display:grid;
-    grid-template-columns: repeat(2, 220px);
-    gap:30px;
-
-    justify-content:center;
-
-   margin-top:-0px;
-margin-bottom:80px; /* 👈 ESSA LINHA resolve */
-}
-
-/* BOTÃO NEON */
-.btn{
-    padding:20px;
-    font-size:20px;
-    border:none;
-    cursor:pointer;
-    border-radius:15px;
-    background:#111;
-    color:white;
-    transition:0.3s;
-    text-align:center;
-}
-
-/* efeitos diferentes */
-.btn1:hover{
-    background:#0ff;
-    color:black;
-    box-shadow:0 0 25px #0ff, 0 0 50px #0ff;
-}
-
-.btn2:hover{
-    background:#ff00ff;
-    color:white;
-    box-shadow:0 0 25px #ff00ff, 0 0 50px #ff00ff;
-}
-
-.btn3:hover{
-    background:#00ff00;
-    color:black;
-    box-shadow:0 0 25px #00ff00, 0 0 50px #00ff00;
-}
-
-.btn4:hover{
-    background:#ffaa00;
-    color:black;
-    box-shadow:0 0 25px #ffaa00, 0 0 50px #ffaa00;
-}
-
-#controls{
-    position:fixed;
-    bottom:calc(env(safe-area-inset-bottom) + 120px);
-    width:100%;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    z-index:999;
-}
-#controls button{
-    font-size:30px;
-    padding:15px;
-    border-radius:10px;
-    border:none;
-    background:rgba(0,0,0,0.5);
-    color:white;
-}
-
-@media (min-width: 768px){
-    #controls{
-        display:none;
-    }
-}
-</style>
-</head>
-
-<body>
-
-
-<div class="menu">
-
-    <button class="btn btn1" onclick="abrir('GPS.html')">
-        🌍 GPS
-    </button>
-
-    <button class="btn btn2" onclick="abrir('jogo.html')">
-        🎮 JOGO
-    </button>
-
-    <button class="btn btn3" onclick="abrir('index.html')">
-        🔎 SEARCH
-    </button>
-
-    <button class="btn btn4" onclick="abrir('calculadora.html')">
-        🧮 CALCULADORA
-    </button>
-
-</div>
-
-<script>
-function abrir(pagina){
-    window.location.href = pagina;
-}
-</script>
-
-<div id="controls">
-  <button id="left">⬅️</button>
-  <button id="jump">⬆️</button>
-  <button id="right">➡️</button>
-</div>
-
 </body>
 </html>
