@@ -74,7 +74,7 @@ canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#071127
 </head>
 <body>
 <main class="shell">
-  <header class="brand"><img src="logo.png" alt="Logotipo do leão dourado de Ildebrando Leandro"><div class="brand-name">Ildebrando Leandro • Fugindo dos Monstros</div></header>
+  <header class="brand"><img src="https://jogogames.github.io/Jogos.Games/assets/logo-ildebrando.png" alt="Logotipo do leão dourado de Ildebrando Leandro"><div class="brand-name">Ildebrando Leandro • Fugindo dos Monstros</div></header>
   <section class="game-frame" aria-label="Jogo Neon Run">
     <canvas id="game" width="1280" height="720"></canvas>
     <div class="hud"><div class="hud-group"><div class="pill">⭐ <b id="score">0</b></div><div class="pill">🪙 <b id="coins">0</b></div></div><div class="pill">🏆 <b id="best">0</b></div></div>
@@ -91,7 +91,7 @@ canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#071127
 const canvas=document.querySelector("#game"),ctx=canvas.getContext("2d"),W=1280,H=720;
 ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";
 const $=s=>document.querySelector(s),load=src=>{const i=new Image();i.src=src;return i};
-const img={logo:load("logo.png"),idle:load("jogo1.png"),walk1:load("jogo5.png"),walk2:load("jogo6.png"),run:load("jogo6.png"),jump:load("jogo7.png"),coin:load("jogo10.png"),enemy:load("jogo13.png"),block:load("jogo11.png"),pipe:load("jogo12.png"),ground:load("jogo16.png")};
+const img={logo:load("https://jogogames.github.io/Jogos.Games/assets/logo-ildebrando.png"),idle:load("jogo1.png"),walk1:load("jogo5.png"),walk2:load("jogo6.png"),run:load("jogo6.png"),jump:load("jogo7.png"),coin:load("jogo10.png"),enemy:load("jogo13.png"),block:load("jogo11.png"),pipe:load("jogo12.png"),ground:load("jogo16.png")};
 const sounds={jump:new Audio("jumping.wav"),coin:new Audio("coin.wav"),over:new Audio("gameover.wav"),music:new Audio("musicgame.mp3")};sounds.music.loop=true;sounds.music.volume=.25;sounds.jump.volume=.45;sounds.coin.volume=.55;sounds.over.volume=.55;
 let muted=false,running=false,paused=false,last=0,camera=0,score=0,coinCount=0,speedLevel=1,spawnUntil=2100,shake=0;
 let best=Number(localStorage.getItem("ildebrando-neon-best")||0);$("#best").textContent=best;
